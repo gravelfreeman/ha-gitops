@@ -1,0 +1,5 @@
+- name: material-you-panel
+  url_path: material-you-configuration
+  sidebar_title: Material You Utilities
+  sidebar_icon: mdi:material-design
+  module_url: /hacsfiles/material-you-utilities/material-you-utilities.min.js

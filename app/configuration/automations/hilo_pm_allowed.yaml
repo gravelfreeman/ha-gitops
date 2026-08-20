@@ -1,0 +1,41 @@
+- id: '1700761948554'
+  alias: Hilo - PM2 (allowed_kWh)
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.defi_hilo
+    attribute: allowed_kWh
+    above: 0
+  condition:
+  - condition: time
+    after: '13:00:00'
+    before: '16:00:00'
+  - condition: template
+    value_template: '{{''pm'' in state_attr(''sensor.defi_hilo'',''next_events'')[0][''period'']
+      }}'
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 5
+    target:
+      entity_id:
+      - climate.thermostat_bureau
+      - climate.thermostat_chambre
+      - climate.thermostat_salle_d_eau
+      - climate.thermostat_salle_de_bain
+      - climate.thermostat_salon
+      - climate.thermostat_sous_sol
+  - service: climate.set_hvac_mode
+    target:
+      entity_id:
+      - climate.thermostat_garage
+    data:
+      hvac_mode: 'off'
+  - service: climate.set_temperature
+    data:
+      temperature: 5
+    target:
+      entity_id:
+      - climate.thermostat_garage
+  mode: single

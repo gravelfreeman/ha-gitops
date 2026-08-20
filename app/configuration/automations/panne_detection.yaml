@@ -1,0 +1,22 @@
+- id: '1691113111109'
+  alias: Panne de courant - Détection
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ac_input_voltage
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    below: 100
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      message: Panne de courant détectée, fermeture des appareils prévue si le courant
+        n'est pas rétabli dans les prochaines minutes. Veuillez brancher la génératrice
+        immédiatement.
+      title: Panne de courant
+      data:
+        notification_icon: mdi:power-off
+  mode: single

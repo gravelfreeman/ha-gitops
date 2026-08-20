@@ -1,0 +1,118 @@
+- sensor:
+    - <<: &badge_energie_piece
+        icon: mdi:power-plug
+        device_class: power
+        state_class: measurement
+        unit_of_measurement: "W"
+        state: >
+          {% set piece = this.attributes.get('area_id', '') %}
+          {% set ns = namespace(total=0) %}
+          {% for entity_id in area_entities(piece) %}
+            {% set s = states[entity_id] %}
+            {% if s is not none
+              and s.domain == 'sensor'
+              and s.attributes.device_class == 'power'
+              and s.state not in ['unknown', 'unavailable'] %}
+              {% set ns.total = ns.total + (s.state | float(0)) %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.total | round(0) }}
+      name: "Puissance Aire commune"
+      unique_id: puissance_aire_commune
+      attributes:
+        area_id: aire_commune
+    - <<: *badge_energie_piece
+      name: "Puissance Bureau"
+      unique_id: puissance_bureau
+      attributes:
+        area_id: bureau
+    - <<: *badge_energie_piece
+      name: "Puissance Gym"
+      unique_id: puissance_gym
+      attributes:
+        area_id: gym
+    - <<: *badge_energie_piece
+      name: "Puissance Atelier"
+      unique_id: puissance_atelier
+      attributes:
+        area_id: atelier
+    - <<: *badge_energie_piece
+      name: "Puissance Salle mécanique"
+      unique_id: puissance_salle_mecanique
+      attributes:
+        area_id: salle_mecanique
+    - <<: *badge_energie_piece
+      name: "Puissance Réserve de bois"
+      unique_id: puissance_reserve_de_bois
+      attributes:
+        area_id: reserve_de_bois
+    - <<: *badge_energie_piece
+      name: "Puissance Salle d'eau"
+      unique_id: puissance_salle_eau
+      attributes:
+        area_id: salle_eau
+    - <<: *badge_energie_piece
+      name: "Puissance Salon"
+      unique_id: puissance_salon
+      attributes:
+        area_id: salon
+    - <<: *badge_energie_piece
+      name: "Puissance Cuisine"
+      unique_id: puissance_cuisine
+      attributes:
+        area_id: cuisine
+    - <<: *badge_energie_piece
+      name: "Puissance Salle à manger"
+      unique_id: puissance_salle_a_manger
+      attributes:
+        area_id: salle_a_manger
+    - <<: *badge_energie_piece
+      name: "Puissance Salle de lavage"
+      unique_id: puissance_salle_lavage
+      attributes:
+        area_id: salle_lavage
+    - <<: *badge_energie_piece
+      name: "Puissance Vestibule"
+      unique_id: puissance_vestibule
+      attributes:
+        area_id: vestibule
+    - <<: *badge_energie_piece
+      name: "Puissance Chambre principale"
+      unique_id: puissance_chambre_principale
+      attributes:
+        area_id: chambre_principale
+    - <<: *badge_energie_piece
+      name: "Puissance Garde-robe"
+      unique_id: puissance_garde_robe
+      attributes:
+        area_id: garde_robe
+    - <<: *badge_energie_piece
+      name: "Puissance Chambre nord"
+      unique_id: puissance_chambre_nord
+      attributes:
+        area_id: chambre_nord
+    - <<: *badge_energie_piece
+      name: "Puissance Chambre sud"
+      unique_id: puissance_chambre_sud
+      attributes:
+        area_id: chambre_sud
+    - <<: *badge_energie_piece
+      name: "Puissance Salle de bain"
+      unique_id: puissance_salle_de_bain
+      attributes:
+        area_id: salle_de_bain
+    - <<: *badge_energie_piece
+      name: "Puissance Grenier"
+      unique_id: puissance_grenier
+      attributes:
+        area_id: grenier
+    - <<: *badge_energie_piece
+      name: "Puissance Cabanon"
+      unique_id: puissance_cabanon
+      attributes:
+        area_id: cabanon
+    - <<: *badge_energie_piece
+      name: "Puissance Cour"
+      unique_id: puissance_cour
+      attributes:
+        area_id: cour

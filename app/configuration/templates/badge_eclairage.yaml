@@ -1,0 +1,117 @@
+- sensor:
+    - <<: &badge_eclairage_piece
+        icon: mdi:lightbulb-on
+        state_class: measurement
+        state: >
+          {% set piece = this.attributes.get('area_id', '') %}
+          {% set entities = expand(area_entities(piece)) if piece else states %}
+          {% set ns = namespace(total=0) %}
+          {% for s in entities %}
+            {% if s.state == 'on'
+              and 'light' in labels(s.entity_id) %}
+              {% set ns.total = ns.total + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.total }}
+      name: "Éclairage Aire commune"
+      unique_id: eclairage_aire_commune
+      attributes:
+        area_id: aire_commune
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Bureau"
+      unique_id: eclairage_bureau
+      attributes:
+        area_id: bureau
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Gym"
+      unique_id: eclairage_gym
+      attributes:
+        area_id: gym
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Atelier"
+      unique_id: eclairage_atelier
+      attributes:
+        area_id: atelier
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salle mécanique"
+      unique_id: eclairage_salle_mecanique
+      attributes:
+        area_id: salle_mecanique
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Réserve de bois"
+      unique_id: eclairage_reserve_de_bois
+      attributes:
+        area_id: reserve_de_bois
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salle d'eau"
+      unique_id: eclairage_salle_eau
+      attributes:
+        area_id: salle_eau
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salon"
+      unique_id: eclairage_salon
+      attributes:
+        area_id: salon
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Cuisine"
+      unique_id: eclairage_cuisine
+      attributes:
+        area_id: cuisine
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salle à manger"
+      unique_id: eclairage_salle_a_manger
+      attributes:
+        area_id: salle_a_manger
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salle de lavage"
+      unique_id: eclairage_salle_lavage
+      attributes:
+        area_id: salle_lavage
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Vestibule"
+      unique_id: eclairage_vestibule
+      attributes:
+        area_id: vestibule
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Chambre principale"
+      unique_id: eclairage_chambre_principale
+      attributes:
+        area_id: chambre_principale
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Garde-robe"
+      unique_id: eclairage_garde_robe
+      attributes:
+        area_id: garde_robe
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Chambre nord"
+      unique_id: eclairage_chambre_nord
+      attributes:
+        area_id: chambre_nord
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Chambre sud"
+      unique_id: eclairage_chambre_sud
+      attributes:
+        area_id: chambre_sud
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Salle de bain"
+      unique_id: eclairage_salle_de_bain
+      attributes:
+        area_id: salle_de_bain
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Grenier"
+      unique_id: eclairage_grenier
+      attributes:
+        area_id: grenier
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Cabanon"
+      unique_id: eclairage_cabanon
+      attributes:
+        area_id: cabanon
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Cour"
+      unique_id: eclairage_cour
+      attributes:
+        area_id: cour
+    - <<: *badge_eclairage_piece
+      name: "Éclairage Maison"
+      unique_id: eclairage_maison

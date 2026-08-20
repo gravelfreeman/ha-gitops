@@ -1,0 +1,38 @@
+- id: '1780280567189'
+  alias: Synchronisation de la température extérieure des thermostats
+  description: Publie la température extérieure aux thermostats Zigbee toutes les
+    15 minutes et chaque fois que la source météo change. Cette valeur permet aux
+    thermostats d’afficher la température extérieure et de garder leur donnée locale
+    à jour.
+  triggers:
+  - entity_id: weather.forecast_maison
+    trigger: state
+  - minutes: /15
+    trigger: time_pattern
+  conditions:
+  - condition: template
+    value_template: '{{ state_attr(''weather.forecast_maison'', ''temperature'') |
+      is_number }}'
+  actions:
+  - variables:
+      outdoor_temp: '{{ state_attr(''weather.forecast_maison'', ''temperature'') |
+        float | round(1) }}'
+      supported_models:
+      - TH1123ZB-G2
+      - TH1124ZB-G2
+      - TH1500ZB-G2
+      - TH1400ZB
+  - repeat:
+      for_each: "{{ integration_entities('mqtt')\n  | select('match', '^climate\\\\.thermostat_')\n
+        \ | list }}\n"
+      sequence:
+      - condition: template
+        value_template: '{{ device_attr(repeat.item, ''model_id'') in supported_models
+          }}
+
+          '
+      - action: mqtt.publish
+        data:
+          topic: zigbee2mqtt/{{ repeat.item | replace('climate.', '') }}/set/thermostat_outdoor_temperature
+          payload: '{{ outdoor_temp }}'
+  mode: single

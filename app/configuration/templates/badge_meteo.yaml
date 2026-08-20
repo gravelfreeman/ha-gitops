@@ -1,0 +1,8 @@
+- sensor:
+    - name: "{{ state_translated('weather.forecast_maison') }}"
+      unique_id: badge_meteo
+      default_entity_id: sensor.badge_meteo
+      state: "{{ state_attr('weather.forecast_maison', 'temperature') }}"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      icon: mdi:weather-partly-cloudy

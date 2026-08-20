@@ -1,0 +1,77 @@
+cambridge_source_a1:
+  alias: Cambridge - Source A2
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: C/YGfwN/A/YG9gZ/A+ABAQn2BvYGfwN/A/YGQAEDfwP//0AFB38D9gb2Bn8D4AEBCfYG9gZ/A38D9gZAAQN/A///QAUHfwP2BvYGfwPgAQEJ9gb2Bn8DfwP2BkABA38D//9ABQd/A/YG9gZ/A+ABAQ/2BvYGfwN/A/YG9gb2Bn8D
+  mode: single
+  icon: mdi:remote-tv
+cambridge_mute:
+  alias: Cambridge - Mute
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: AYwD4AEBAxAHjAPgCQGAFQkQBxAHjAP//4wD4AEBQBHgCQGAFQkQBxAHjAP//4wD4AEBQBHgCQELEAeMA4wDEAcQB4wD
+  mode: single
+  icon: mdi:remote-tv
+cambridge_power:
+  alias: Cambridge - Power On
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: C3gDeAP7BvsGeAN4A8AFBfsGeAN4A4AFQAEP+wb//3gDeAP7BvsGeAN4A8AFBfsGeAN4A4AFQAEP+wb//3gDeAP7BvsGeAN4A8AFEfsGeAN4A/sGeAN4A3gDeAP7Bg==
+  mode: single
+  icon: mdi:remote-tv
+cambridge_power_off:
+  alias: Cambridge - Power Off
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: AX0D4AUBDfUGfQN9A/UG9QZ9A30DgAXgAQED//99A+AFAYAhB/UG9QZ9A30DgAXgAQED//99A+AFAYAhB/UG9QZ9A30DgAXgAQED//99A+AFAYAhB/UG9QZ9A30DgAXgAQED//99A+AFAYAhB/UG9QZ9A30DgAUJfQN9A30DfQN9Aw==
+  mode: single
+  icon: mdi:remote-tv
+cambridge_source_d1:
+  alias: Cambridge - Source D1
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: C/oGfAN8A/oG+gZ8A+ABAQH6BoABA3wDfANABQH//0AFB3wD+gb6BnwD4AEBAfoGgAEDfAN8A0AFAf//QAUHfAP6BvoGfAPgAQEB+gaAAQN8A3wDQAUB//9ABQd8A/oG+gZ8A+ABAQH6BoABB3wDfAP6BnwD
+  mode: single
+  icon: mdi:remote-tv
+cambridge_volume_up:
+  alias: Cambridge - Volume Up
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: AYoD4AEBAwUHigPgBQEFBQcFB4oD4AEBA///igPgAQHgBRtAAQUFBwUHigPgAQED//+KA+ABAeAFG0ABDwUHBQf7A4oDigOKA4oDigM=
+  mode: single
+  icon: mdi:remote-tv
+cambridge_volume_down:
+  alias: Cambridge - Volume Down
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: BYkDiQMGB0ABAYkD4AUBBQYHBgeJA4ABQAkH//+JA4kDBgdAAQGJA+AFAQUGBwYHiQOAAUAJB///iQOJAwYHQAEBiQPgBQEPBgcGB4kDiQOJA4kDBgeJAw==
+  mode: single
+  icon: mdi:remote-tv

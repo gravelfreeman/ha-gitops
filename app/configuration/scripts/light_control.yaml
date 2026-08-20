@@ -1,0 +1,30 @@
+light_control:
+  alias: Light Control
+  sequence:
+  - if:
+    - condition: template
+      value_template: '"{{ states.light | selectattr(''state'', ''eq'', ''on'') |
+        selectattr("{{ room }}") | list | count > 0 }}"'
+    then:
+    - service: light.turn_off
+      data_template:
+        area_id: '{{ room }}'
+  mode: single
+  icon: mdi:lightbulb
+  fields:
+    room:
+      selector:
+        area:
+          multiple: true
+      default:
+      - living_room
+      - kitchen
+      - bedroom
+      - salle_de_bain
+      - salle_d_eau
+      - bureau
+      - sous_sol
+      - serveur
+      - garage
+      - exterieur
+      name: Room

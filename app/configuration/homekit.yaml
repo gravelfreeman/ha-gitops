@@ -1,0 +1,88 @@
+- name: Bureau
+  port: 51828
+  filter:
+    include_entities:
+      - climate.thermostat_bureau
+      - sensor.humidity_bureau
+      - light.interrupteur_bureau
+      - light.key_light_left
+      - light.key_light_right
+      - light.lampe_boule
+      - light.lampe_suspendue
+- name: Chambre
+  port: 51830
+  filter:
+    include_entities:
+      - climate.thermostat_chambre
+      - sensor.humidity_chambre
+      - light.interrupteur_chambre
+      - switch.prise_lampe_de_sel
+      - switch.prise_televiseur
+- name: Cuisine
+  port: 51831
+  filter:
+    include_entities:
+      - sensor.temperature_rdc
+      - sensor.humidity_rdc
+      - light.interrupteur_cuisine
+      - light.interrupteur_passage
+- name: Garage
+  port: 51832
+  filter:
+    include_entities:
+      - climate.thermostat_garage
+      - sensor.humidity_garage
+      - binary_sensor.porte_garage_contact
+- name: Homelab
+  port: 51833
+  filter:
+    include_entities:
+      - sensor.temperature_homelab
+      - sensor.humidity_homelab
+- name: Salle d'eau
+  port: 51834
+  filter:
+    include_entities:
+      - climate.thermostat_salle_d_eau
+      - sensor.humidity_rdc
+      - light.interrupteur_salle_d_eau
+- name: Salle de bain
+  port: 51837
+  filter:
+    include_entities:
+      - climate.thermostat_salle_de_bain
+      - sensor.humidity_sdb
+      - light.interrupteur_salle_de_bain
+      - sensor.laveuse
+      - sensor.secheuse
+- name: Salon
+  port: 51829
+  filter:
+    include_entities:
+      - climate.thermostat_salon
+      - sensor.humidity_rdc
+      - light.interrupteur_salon
+      - script.cambridge_mute
+      - script.cambridge_power_off
+      - script.cambridge_power_on
+      - script.cambridge_source_a2
+      - script.cambridge_source_d1
+- name: Sous-sol
+  port: 51835
+  filter:
+    include_entities:
+      - climate.thermostat_sous_sol
+      - sensor.humidity_sdb
+      - light.interrupteur_sous_sol
+      - switch.prise_armoire
+- name: Système d'alarme
+  port: 51836
+  filter:
+    include_domains:
+      - alarm_control_panel
+    include_entities:
+      - binary_sensor.porte_principale_contact
+      - binary_sensor.porte_secondaire_contact
+      - binary_sensor.porte_sous_sol_contact
+      - binary_sensor.mouvement_salle_d_eau_occupancy
+      - binary_sensor.mouvement_salle_de_bain_occupancy

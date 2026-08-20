@@ -1,0 +1,4 @@
+external_url: !secret home_assistant_url
+internal_url: !secret home_assistant_url
+auth_providers:
+  - type: homeassistant

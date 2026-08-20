@@ -1,0 +1,11 @@
+media_player:
+  alias: Media Player
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: url
+      media_content_id: spotify://https://open.spotify.com/playlist/0YgvGJY6q1E8cPM266oD3k?si=lz9ib3bgSWahAWKmiwLn2w
+    target:
+      entity_id: media_player.salon
+  mode: single
+  icon: mdi:spotify

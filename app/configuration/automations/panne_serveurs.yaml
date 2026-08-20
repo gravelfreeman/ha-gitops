@@ -1,0 +1,29 @@
+- id: '1691106134813'
+  alias: Panne de courant - Fermeture des appareils
+  description: Fermeture des équipements lors d'une panne de courant.
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.runtime_minutes_remaining
+    below: 10
+    enabled: true
+  condition:
+  - condition: state
+    entity_id: sensor.battery_charge_detail
+    state: discharging
+  action:
+  - service: truenas.system_shutdown
+    data: {}
+    target:
+      entity_id: sensor.xxx_system_uptime
+    enabled: true
+  - service: truenas.system_shutdown
+    data: {}
+    target:
+      entity_id: sensor.yyy_system_uptime
+    enabled: true
+  - service: notify.notify
+    data:
+      title: Panne de courant
+      message: Système de protection du matériel enclenché, fermeture des appareils
+        imminente. Veuillez brancher la génératrice immédiatement.
+  mode: single

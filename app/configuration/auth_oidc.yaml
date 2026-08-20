@@ -1,0 +1,7 @@
+client_id: "c5a2e7f8-a2a9-4630-876e-4ece650bdd1f"
+client_secret: !secret oidc_client_secret
+discovery_url: !secret oidc_discovery_url
+display_name: "Freeman ID"
+features:
+  default_redirect: true
+  force_https: true
