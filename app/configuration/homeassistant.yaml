@@ -1,4 +1,4 @@
-external_url: !env_var HOME_ASSISTANT_URL
-internal_url: !env_var HOME_ASSISTANT_URL
+external_url: !secret home_assistant_url
+internal_url: !secret home_assistant_url
 auth_providers:
   - type: homeassistant
