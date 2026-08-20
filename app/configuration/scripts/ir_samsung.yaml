@@ -1,0 +1,11 @@
+television_power:
+  alias: Télévision - Power
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/Télécommande salon/set/ir_code_to_send
+      qos: '0'
+      retain: true
+      payload_template: CKERoRE+AosGZSADQAcBPgLgCwFAF8AD4A8B4AcfwA/AB8AB4AcPQAEHjLShEaERPgLAG0AH4AsBQBfAA+APAeAHH8APwAfAAeAHDwM+Aj4C
+  mode: single
+  icon: mdi:remote-tv

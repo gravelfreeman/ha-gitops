@@ -1,0 +1,9 @@
+dashboard_etage:
+  name: Étage du dashboard
+  options:
+    - Rez-de-chaussée
+    - Étage
+    - Sous-sol
+    - Extérieur
+  initial: Rez-de-chaussée
+  icon: mdi:floor-plan

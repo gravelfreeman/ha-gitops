@@ -1,0 +1,47 @@
+assist_pipeline:
+auth_oidc: !include configuration/auth_oidc.yaml
+automation: !include_dir_merge_list configuration/automations
+bluetooth:
+conversation:
+energy:
+file:
+frontend:
+  extra_module_url:
+    - /hacsfiles/kiosk-mode/kiosk-mode.js
+    - /hacsfiles/material-you-utilities/material-you-utilities.min.js
+  themes: !include_dir_merge_named themes
+go2rtc:
+history:
+homeassistant: !include configuration/homeassistant.yaml
+homeassistant_alerts:
+# homekit: !include configuration/homekit.yaml
+http: !include configuration/http.yaml
+image_upload:
+logbook:
+media_source:
+mobile_app:
+my:
+panel_custom: !include configuration/panel_custom.yaml
+recorder:
+  db_url: !env_var RECORDER_DB_URL
+scene: !include_dir_merge_list configuration/scenes
+script: !include_dir_merge_named configuration/scripts
+sensor: !include_dir_merge_list configuration/sensors
+ssdp:
+stream:
+sun:
+template: !include_dir_merge_list configuration/templates
+usage_prediction:
+utility_meter:
+webhook:
+zeroconf:
+# configuration/helpers
+input_select: !include_dir_merge_named configuration/helpers/input_selects
+input_boolean: !include_dir_merge_named configuration/helpers/input_booleans
+input_number: !include_dir_merge_named configuration/helpers/input_numbers
+input_text: !include_dir_merge_named configuration/helpers/input_texts
+input_datetime: !include_dir_merge_named configuration/helpers/input_datetimes
+input_button: !include_dir_merge_named configuration/helpers/input_buttons
+counter: !include_dir_merge_named configuration/helpers/counters
+timer: !include_dir_merge_named configuration/helpers/timers
+schedule: !include_dir_merge_named configuration/helpers/schedules

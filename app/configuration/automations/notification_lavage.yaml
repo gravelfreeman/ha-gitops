@@ -1,0 +1,46 @@
+- id: '1701976165745'
+  alias: Notification - Lavage
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.laveuse_wash_completed
+    to: 'on'
+    from:
+    id: laveuse
+  - platform: state
+    entity_id:
+    - binary_sensor.secheuse_dry_completed
+    to: 'on'
+    from:
+    id: secheuse
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - laveuse
+      sequence:
+      - alias: Vérifier qui est à la maison
+        condition: template
+        value_template: '{{ states(''person.'' + name) == ''home'' }}'
+      - alias: Envoyer le(s) message(s)
+        service: notify.{{ name }}
+        data:
+          message: Cycle de lavage terminé
+          title: Lavage
+    - conditions:
+      - condition: trigger
+        id:
+        - secheuse
+      sequence:
+      - alias: Vérifier qui est à la maison
+        condition: template
+        value_template: '{{ states(''person.'' + name) == ''home'' }}'
+      - alias: Envoyer le(s) message(s)
+        service: notify.{{ name }}
+        data:
+          message: Cycle de séchage terminé
+          title: Lavage
+  mode: single

@@ -1,0 +1,42 @@
+- id: '1698264985282'
+  alias: Éclairage - Extérieur
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+    id: sunset
+  - platform: sun
+    event: sunrise
+    offset: 0
+    id: sunrise
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - sunset
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          entity_id:
+          - light.interrupteur_garage
+          - light.interrupteur_maison
+      - service: light.turn_on
+        data:
+          brightness_pct: 25
+        target:
+          entity_id: light.interrupteur_galerie
+    - conditions:
+      - condition: trigger
+        id:
+        - sunrise
+      sequence:
+      - service: light.turn_off
+        target:
+          area_id: exterieur
+        data: {}
+  mode: single

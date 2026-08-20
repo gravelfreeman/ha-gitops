@@ -1,0 +1,64 @@
+- id: '1704151692765'
+  alias: Télécommande - Cambridge
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from: 'off'
+    to:
+    id: 'on'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from: standby
+    to:
+    id: 'on'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from: idle
+    to:
+    id: 'on'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from: paused
+    to:
+    id: 'on'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from:
+    to: 'off'
+    id: 'off'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from:
+    to: idle
+    id: 'off'
+  - platform: state
+    entity_id:
+    - media_player.salon
+    from:
+    to: standby
+    id: 'off'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - 'on'
+      sequence:
+      - service: script.cambridge_source_d1
+        data: {}
+    - conditions:
+      - condition: trigger
+        id:
+        - 'off'
+      sequence:
+      - service: script.cambridge_power_off
+        data: {}
+  mode: single

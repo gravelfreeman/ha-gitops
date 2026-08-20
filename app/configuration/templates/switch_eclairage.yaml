@@ -1,0 +1,156 @@
+- switch:
+    - <<: &switch_eclairage_piece
+        icon: mdi:lightbulb-group
+        state: >
+          {% set entity_id = this.entity_id | default('', true) %}
+          {% set area_id = entity_id | replace('switch.eclairage_', '') %}
+          {% set piece = '' if area_id == 'maison' else area_id %}
+          {% set entities = expand(area_entities(piece)) if piece else states %}
+          {% set ns = namespace(on=false) %}
+          {% for s in entities %}
+            {% if s.state == 'on' and 'light' in labels(s.entity_id) %}
+              {% set ns.on = true %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.on }}
+        turn_on:
+          - variables:
+              light_entities: >
+                {% set entity_id = this.entity_id | default('', true) %}
+                {% set area_id = entity_id | replace('switch.eclairage_', '') %}
+                {% set piece = '' if area_id == 'maison' else area_id %}
+                {% set entities = expand(area_entities(piece)) if piece else states %}
+                {% set ns = namespace(ids=[]) %}
+                {% for s in entities %}
+                  {% if 'light' in labels(s.entity_id) %}
+                    {% set ns.ids = ns.ids + [s.entity_id] %}
+                  {% endif %}
+                {% endfor %}
+                {{ ns.ids | join(',') }}
+          - condition: template
+            value_template: "{{ light_entities | length > 0 }}"
+          - action: homeassistant.turn_on
+            target:
+              entity_id: "{{ light_entities }}"
+        turn_off:
+          - variables:
+              light_entities: >
+                {% set entity_id = this.entity_id | default('', true) %}
+                {% set area_id = entity_id | replace('switch.eclairage_', '') %}
+                {% set piece = '' if area_id == 'maison' else area_id %}
+                {% set entities = expand(area_entities(piece)) if piece else states %}
+                {% set ns = namespace(ids=[]) %}
+                {% for s in entities %}
+                  {% if 'light' in labels(s.entity_id) %}
+                    {% set ns.ids = ns.ids + [s.entity_id] %}
+                  {% endif %}
+                {% endfor %}
+                {{ ns.ids | join(',') }}
+          - condition: template
+            value_template: "{{ light_entities | length > 0 }}"
+          - action: homeassistant.turn_off
+            target:
+              entity_id: "{{ light_entities }}"
+      name: "Éclairage Aire commune"
+      unique_id: switch_eclairage_aire_commune
+      default_entity_id: switch.eclairage_aire_commune
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Bureau"
+      unique_id: switch_eclairage_bureau
+      default_entity_id: switch.eclairage_bureau
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Gym"
+      unique_id: switch_eclairage_gym
+      default_entity_id: switch.eclairage_gym
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Atelier"
+      unique_id: switch_eclairage_atelier
+      default_entity_id: switch.eclairage_atelier
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salle mécanique"
+      unique_id: switch_eclairage_salle_mecanique
+      default_entity_id: switch.eclairage_salle_mecanique
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Réserve de bois"
+      unique_id: switch_eclairage_reserve_de_bois
+      default_entity_id: switch.eclairage_reserve_de_bois
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salle d'eau"
+      unique_id: switch_eclairage_salle_eau
+      default_entity_id: switch.eclairage_salle_eau
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salon"
+      unique_id: switch_eclairage_salon
+      default_entity_id: switch.eclairage_salon
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Cuisine"
+      unique_id: switch_eclairage_cuisine
+      default_entity_id: switch.eclairage_cuisine
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salle à manger"
+      unique_id: switch_eclairage_salle_a_manger
+      default_entity_id: switch.eclairage_salle_a_manger
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salle de lavage"
+      unique_id: switch_eclairage_salle_lavage
+      default_entity_id: switch.eclairage_salle_lavage
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Vestibule"
+      unique_id: switch_eclairage_vestibule
+      default_entity_id: switch.eclairage_vestibule
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Chambre principale"
+      unique_id: switch_eclairage_chambre_principale
+      default_entity_id: switch.eclairage_chambre_principale
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Garde-robe"
+      unique_id: switch_eclairage_garde_robe
+      default_entity_id: switch.eclairage_garde_robe
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Chambre nord"
+      unique_id: switch_eclairage_chambre_nord
+      default_entity_id: switch.eclairage_chambre_nord
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Chambre sud"
+      unique_id: switch_eclairage_chambre_sud
+      default_entity_id: switch.eclairage_chambre_sud
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Salle de bain"
+      unique_id: switch_eclairage_salle_de_bain
+      default_entity_id: switch.eclairage_salle_de_bain
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Grenier"
+      unique_id: switch_eclairage_grenier
+      default_entity_id: switch.eclairage_grenier
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Cabanon"
+      unique_id: switch_eclairage_cabanon
+      default_entity_id: switch.eclairage_cabanon
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Cour"
+      unique_id: switch_eclairage_cour
+      default_entity_id: switch.eclairage_cour
+
+    - <<: *switch_eclairage_piece
+      name: "Éclairage Maison"
+      unique_id: switch_eclairage_maison
+      default_entity_id: switch.eclairage_maison

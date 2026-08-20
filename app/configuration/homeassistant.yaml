@@ -1,0 +1,4 @@
+external_url: !env_var HOME_ASSISTANT_URL
+internal_url: !env_var HOME_ASSISTANT_URL
+auth_providers:
+  - type: homeassistant
