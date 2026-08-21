@@ -1,4 +1,4 @@
-# ha-gitops: managed
+# ha-gitops
 bubble_room_card:
   default:
     name: ''
