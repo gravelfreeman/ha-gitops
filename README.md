@@ -177,7 +177,15 @@ The relative `app/` layout is part of the contract between this repository,
 git-sync, and the hook. If those paths are changed, update the corresponding
 git-sync and Kubernetes mounts as well.
 
-The hook supports a dry-run mode:
+The hook supports a dry-run mode. In the HelmRelease, enable it by
+adding the environment variable to the `git-sync` container:
+
+```yaml
+env:
+  HA_GITOPS_DRY_RUN: '1'
+```
+
+The hook can also be run manually:
 
 ```sh
 /usr/bin/bash /etc/git-sync/exechook.sh --dry-run
@@ -185,7 +193,8 @@ The hook supports a dry-run mode:
 
 Dry-run reports files that would be created or replaced and blocks unsafe
 directory conflicts without changing the PVC or calling the Home Assistant
-API.
+API. Remove `HA_GITOPS_DRY_RUN` from the HelmRelease to enable normal
+projection and Home Assistant validation/reload.
 
 The `git-sync` container emits structured JSON logs. To display only the
 exechook output, including the dry-run result:
