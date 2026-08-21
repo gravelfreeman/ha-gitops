@@ -1,4 +1,4 @@
-// ha-gitops: managed
+// ha-gitops
 console.info("local-tabs-card.js loaded");
 
 const LOCAL_TABS_DEFAULT_CONFIG = {
