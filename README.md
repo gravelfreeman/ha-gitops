@@ -180,12 +180,20 @@ git-sync and Kubernetes mounts as well.
 The hook supports a dry-run mode:
 
 ```sh
-/bin/sh /etc/git-sync/exechook.sh --dry-run
+/usr/bin/bash /etc/git-sync/exechook.sh --dry-run
 ```
 
 Dry-run reports files that would be created or replaced and blocks unsafe
 directory conflicts without changing the PVC or calling the Home Assistant
 API.
+
+The `git-sync` container emits structured JSON logs. To display only the
+exechook output, including the dry-run result:
+
+```sh
+kubectl logs -n home-assistant deploy/home-assistant -c git-sync \
+  | jq -Rr 'fromjson? | select(.logger == "exechook") | .stderr // empty'
+```
 
 ## Kubernetes and security model
 
