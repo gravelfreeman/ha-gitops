@@ -27,7 +27,7 @@ The implementation uses existing, easy-to-audit components:
 
 - GitHub as the source of truth.
 - `git-sync` as the Kubernetes sidecar that polls and publishes the repository.
-- One small POSIX shell exechook of roughly 100 lines.
+- One small shell exechook.
 - The Home Assistant configuration-check and reload APIs.
 
 This avoids a custom Home Assistant add-on or a heavy controller for a problem
