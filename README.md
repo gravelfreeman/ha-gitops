@@ -31,7 +31,6 @@ Home Assistant does not serve static files correctly through symlinks. Every Git
 
 For example:
 
-- [app/www/lovelace/tabs.js](https://github.com/gravelfreeman/ha-gitops/blob/main/app/www/lovelace/tabs.js)
 - [app/www/streamline-card/streamline_templates.yaml](https://github.com/gravelfreeman/ha-gitops/blob/main/app/www/streamline-card/streamline_templates.yaml)
 
 The marker tells the synchronization hook to copy the file into `/config/www/` instead of creating a symlink. It also allows the hook to remove stale copies when a marked file is deleted from Git, without touching unmarked runtime or HACS files.
