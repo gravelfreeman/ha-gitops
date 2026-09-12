@@ -1,32 +1,32 @@
-id: notification__camera_porte_avant
-alias: Notification - Caméra porte avant
-description: Détecte une présence à la porte avant et avertit les occupants.
-triggers:
-  - trigger: motion.detected
-    target:
-      entity_id:
-        - binary_sensor.porte_avant_personne
-        - binary_sensor.porte_avant_vehicule
-    options:
-      behavior: each
-      for: '00:00:00'
-conditions:
-  - condition: template
-    value_template: |-
-      {{ as_timestamp(now()) - as_timestamp(this.attributes.last_triggered, default=0) > 30 }}
-actions:
-  - action: camera.snapshot
-    metadata: {}
-    target:
-      entity_id: camera.porte_avant_fluide
-    data:
-      filename: /config/www/reolink_snapshot/last_snapshot_doorbell.jpg
-  - action: notify.mobile_app_iphone
-    metadata: {}
-    data:
-      message: Quelqu’un est passé devant la porte.
+- id: notification_camera_porte_avant
+  alias: Notification - Caméra porte avant
+  description: Détecte une présence à la porte avant et avertit les occupants.
+  triggers:
+    - trigger: motion.detected
+      target:
+        entity_id:
+          - binary_sensor.porte_avant_personne
+          - binary_sensor.porte_avant_vehicule
+      options:
+        behavior: each
+        for: '00:00:00'
+  conditions:
+    - condition: template
+      value_template: |-
+        {{ as_timestamp(now()) - as_timestamp(this.attributes.last_triggered, default=0) > 30 }}
+  actions:
+    - action: camera.snapshot
+      metadata: {}
+      target:
+        entity_id: camera.porte_avant_fluide
       data:
-        image: /local/reolink_snapshot/last_snapshot_doorbell.jpg
-        url: /dashboard-mobile/securite
-        clickAction: /dashboard-mobile/securite
-mode: single
+        filename: /config/www/reolink_snapshot/last_snapshot_doorbell.jpg
+    - action: notify.mobile_app_iphone
+      metadata: {}
+      data:
+        message: Quelqu’un est passé devant la porte.
+        data:
+          image: /local/reolink_snapshot/last_snapshot_doorbell.jpg
+          url: /dashboard-mobile/securite
+          clickAction: /dashboard-mobile/securite
+  mode: single
