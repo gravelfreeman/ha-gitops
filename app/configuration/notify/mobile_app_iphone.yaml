@@ -1,5 +1,5 @@
 - platform: group
   name: mobile_app_iphone
   services:
-    - action: mobile_app_iphone_de_gravel
-    - action: mobile_app_iphone_de_mary_lee
+    - service: mobile_app_iphone_de_gravel
+    - service: mobile_app_iphone_de_mary_lee
