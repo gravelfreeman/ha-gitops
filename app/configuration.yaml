@@ -22,6 +22,7 @@ image_upload:
 logbook:
 media_source:
 mobile_app:
+notify: !include_dir_merge_list configuration/notify
 my:
 panel_custom: !include configuration/panel_custom.yaml
 recorder:
